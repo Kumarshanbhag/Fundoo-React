@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import ForgotPassword from './Components/ForgotPassword';
+import SignUp from './Components/SignUp';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <Switch>
            <Route path='/' component={SignIn} exact={true}></Route>
            <Route path='/forgotpassword' component={ForgotPassword}></Route>
+           <Route path='/signup' component={SignUp}></Route>
          </Switch>
       </BrowserRouter>
       </div>

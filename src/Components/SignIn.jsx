@@ -20,7 +20,6 @@ class SignIn extends React.Component{
         this.handleChange = this.handleChange.bind(this);
       }
       handleChange = async (e) => {
-        // const { name } = e.target;
         this.setState({ [e.target.name]: await e.target.value });
       };
 

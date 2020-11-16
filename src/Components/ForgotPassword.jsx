@@ -37,7 +37,7 @@ class ForgotPassword extends React.Component{
                     <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
                     
                       <TextField className="EmailInput" value={this.state.emailId} name="EmailId" onChange="handleChange" fullWidth="true" 
-                      id="standard-basic" color="secondary" label="Email Id *"/>
+                      id="standard-basic" color="secondary" label="Email Id *" variant="outlined"/>
                     
                     </Grid> 
 
