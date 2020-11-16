@@ -7,10 +7,9 @@ import { Card,
     Grid,
     InputAdornment,
     IconButton,
-
-FormControl,
-InputLabel,
-OutlinedInput,
+    FormControl,
+    InputLabel,
+    OutlinedInput,
 }
 from "@material-ui/core"; 
 import "../scss/signup.scss";
