@@ -47,7 +47,7 @@ class SignIn extends React.Component{
             <Card className="mainLogo" justify="center" boxShadow={3}>
                 <CardContent>
                     <FundooLogo />
-                    <Typography className="signInLabel" m={3} variant="h5">
+                    <Typography className="signInLabel" m={1} variant="h5">
                         Sign in
                     </Typography>
                     <Typography className="loginInfo">Continue to Fundoo</Typography>
@@ -57,7 +57,7 @@ class SignIn extends React.Component{
                         fullWidth="true" id="standard-basic" color="secondary" label="Email Id *" variant="outlined"/>
             
                         <Grid item xs={12} className="gridItem">
-                          <FormControl variant="outlined" className="passwordForm">
+                          <FormControl variant="outlined" className="password">
                             <InputLabel htmlFor="outlined-adornment-password">
                                 Password*
                             </InputLabel>

@@ -136,12 +136,12 @@ class SignUp extends React.Component{
                              id="outlined-basic" label="Mobile*" variant="outlined"/>
                              {this.state.validContact === false ? (
                                 <FormHelperText style={{ color: "red" }} id="outlined-weight-helper-text">
-                                    Enter Valid Last Name
+                                    Enter Valid Mobile Number
                                 </FormHelperText>
                             ) : null}
                         </Grid>
                         
-                        <Grid item xs={6} className="gridItem">
+                        <Grid item xs={3} className="gridItem">
                           <FormControl variant="outlined" className="passwordForm">
                             <InputLabel htmlFor="outlined-adornment-password">
                                 Password*
@@ -161,12 +161,12 @@ class SignUp extends React.Component{
                                     </IconButton>
                                 </InputAdornment>
                             }
-                        labelWidth={70} />
+                            labelWidth={70} />
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={6} className="gridItem">
-                          <FormControl variant="outlined" className="passwordForm">
+                        <Grid item xs={3} className="gridItem">
+                          <FormControl variant="outlined" className="confirmForm">
                             <InputLabel htmlFor="outlined-adornment-password">
                                 Confirm Password*
                             </InputLabel>
