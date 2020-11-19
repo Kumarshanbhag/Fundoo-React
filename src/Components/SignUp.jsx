@@ -44,7 +44,7 @@ class SignUp extends React.Component{
             confirm:null,
             service:'advance',
             passwordVisibility:true,
-            buttomVisibility:true,
+            buttonVisibility:true,
             validName:false,
             validLastname:false,
             validEmail:false,
@@ -62,7 +62,7 @@ class SignUp extends React.Component{
 
         const { name } = e.target;
         this.setState({ [e.target.name]: await e.target.value });
-        // console.log(name);
+        console.log(name);
         switch (name) {
             case "firstname":
               NAME_PATTERN.test(this.state.firstname)
@@ -90,6 +90,10 @@ class SignUp extends React.Component{
     
             default:
               break;
+        }
+        if(this.state.firstname !=null && this.state.lastname !=null && this.state.emailId !=null && this.state.mobile !=null
+            && this.state.password!=null  && this.state.confirm!=null) {
+                this.setState({ buttonVisibility: false});
         }
         console.log(this.state.validName);
         console.log(this.state.validLastname);
@@ -255,7 +259,7 @@ class SignUp extends React.Component{
                             </FormControl>
                         </Grid> 
                     </Grid> 
-                    <Button className="SignUpButton" onClick={this.handleData}>
+                    <Button className="SignUpButton" disabled={this.state.buttonVisibility} onClick={this.handleData}>
                         Sign Up
                     </Button>
                     <Link className="LoginLink" to="/">

@@ -31,6 +31,7 @@ class SignIn extends React.Component{
             emailId:null,
             password:null,
             passwordVisibility:true,
+            buttonVisibility:true,
             open: false,
             message: null,
         };
@@ -40,6 +41,9 @@ class SignIn extends React.Component{
 
       handleChange = async (e) => {
         this.setState({ [e.target.name]: await e.target.value });
+        if(this.state.emailId !=null && this.state.password !=null) {
+                this.setState({ buttonVisibility: false});
+        }
       };
 
       handleVisibility = () => {
@@ -130,7 +134,7 @@ class SignIn extends React.Component{
                         </Grid>
                     
                     </Grid>
-                    <Button className="LoginButton" onClick={this.handleData}>Log In</Button>
+                    <Button className="LoginButton" disabled={this.state.buttonVisibility} onClick={this.handleData}>Log In</Button>
                     <Link className="ForgotPasswordLink" to="/forgotpassword">
                         Forgot Password?
                     </Link>
