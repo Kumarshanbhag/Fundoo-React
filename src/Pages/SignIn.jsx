@@ -1,5 +1,5 @@
 import React from 'react';
-import FundooLogo from './FundooLogo';
+import FundooLogo from '../Components/FundooLogo';
 import { Card,
     CardContent,
     Typography,
@@ -34,6 +34,7 @@ class SignIn extends React.Component{
             buttonVisibility:true,
             open: false,
             message: null,
+            snackBarColor:"success"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleVisibility=this.handleVisibility.bind(this);
@@ -73,6 +74,7 @@ class SignIn extends React.Component{
             } else {
                 this.setState({ message: "Login Failed" });
                 this.setState({ open: true });
+                this.setState({ snackBarColor: "error"});
             }
          })
     };
@@ -94,7 +96,7 @@ class SignIn extends React.Component{
                         autoHideDuration={1000}
                         onClose={this.handleSnackbarClose}
                     >
-                        <Alert severity="success">
+                        <Alert severity={this.state.snackBarColor}>
                             {<span>{this.state.message}</span>} 
                         </Alert>
                     </Snackbar>

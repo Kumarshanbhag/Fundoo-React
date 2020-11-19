@@ -1,5 +1,5 @@
 import React from 'react';
-import FundooLogo from './FundooLogo';
+import FundooLogo from '../Components/FundooLogo';
 import { Card,
     CardContent,
     Typography,
