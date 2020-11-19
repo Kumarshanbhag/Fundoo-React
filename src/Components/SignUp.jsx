@@ -10,19 +10,27 @@ import { Card,
     FormControl,
     InputLabel,
     OutlinedInput,
-    FormHelperText
+    FormHelperText,
+    Button,
+    Snackbar
 }
 from "@material-ui/core"; 
 import "../scss/signup.scss";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { Link } from "react-router-dom";
+import UserServicesAPI from "../Services/UserServices.jsx";
+import MuiAlert from '@material-ui/lab/Alert';
 
 const NAME_PATTERN = RegExp("^[A-Z]{1}[a-zA-Z]{2,}$");
 const EMAIL_PATTERN = RegExp(
     "^[a-zA-Z0-9]+[.+_-]?[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z]{2,4}[.]?[a-zA-Z]{0,3}"
   );
 const CONTACT_PATTERN = RegExp("^[0-9]{10}$");
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class SignUp extends React.Component{
     constructor() {
@@ -34,20 +42,27 @@ class SignUp extends React.Component{
             mobile:null,
             password:null,
             confirm:null,
+            service:'advance',
             passwordVisibility:true,
+            buttomVisibility:true,
             validName:false,
             validLastname:false,
             validEmail:false,
             validContact:false,
+            open: false,
+            message: null,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleVisibility=this.handleVisibility.bind(this);
       }
 
       handleChange = async (e) => {
+          console.log("Targfet",e.target.value);
+          console.log("Targfet name",e.target.name);
+
         const { name } = e.target;
         this.setState({ [e.target.name]: await e.target.value });
-        console.log(name);
+        // console.log(name);
         switch (name) {
             case "firstname":
               NAME_PATTERN.test(this.state.firstname)
@@ -88,11 +103,62 @@ class SignUp extends React.Component{
             this.setState({ passwordVisibility: true});
           }
       };
+
+    handleData = () => {
+        let data = {
+            firstName: this.state.firstname,
+            lastName: this.state.lastname,
+            phoneNumber:this.state.mobile,
+            service:this.state.service,
+            email:this.state.emailId,
+            password:this.state.password
+        };
+        UserServicesAPI.createAccount(data, (res) => {
+            console.log("Api called");
+            if (res.status === 200) {
+                console.log("Response", res);
+                this.setState({ message: "Registration Done" });
+                this.setState({ open: true });
+                console.log(data);
+                this.props.history.push({
+                    pathname: "/",
+                });
+            } else {
+                this.setState({ message: "Registration Failed" });
+                this.setState({ open: true });
+            }
+         });
+    };
       
+    handleSnackbarClose = () => {
+        this.setState({ open: false});
+    }
+
     render(){
+        console.log("a",this.state.firstname);
+        console.log("b",this.state.lastname);
+        console.log("a",this.state.mobile);
+        console.log("a",this.state.emailId);
+        console.log("a",this.state.password);
+        console.log("a",this.state.confirm);
+
         return(
             <Card className="signUpCard">
                 <CardContent>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "center",
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={500}
+                        onClose={this.handleSnackbarClose}
+                    >
+                        <Alert severity="success">
+                            {<span>{this.state.message}</span>} 
+                        </Alert>
+                    </Snackbar>
+
                     <FundooLogo />
                     <Typography variant="h5" className="signUpLabel">
                         Create your Fundoo Account
@@ -111,7 +177,7 @@ class SignUp extends React.Component{
                             ) : null} 
                         </Grid>
                         
-                        <Grid item xs={6}  className="gridItem">
+                        <Grid item xs={6} className="gridItem">
                             <TextField name="lastname" onChange={this.handleChange} value={this.state.lastname} fullWidth="true" 
                             id="outlined-basic" label="Last name*" variant="outlined"/>
                             {this.state.validLastname === false ? (
@@ -172,7 +238,7 @@ class SignUp extends React.Component{
                             </InputLabel>
                             <OutlinedInput
                             type={this.state.passwordVisibility ? "password":"text"}
-                            name="password"
+                            name="confirm"
                             value={this.state.confirm}
                             onChange={this.handleChange}
                             endAdornment={
@@ -189,9 +255,9 @@ class SignUp extends React.Component{
                             </FormControl>
                         </Grid> 
                     </Grid> 
-                    <Link className="SignUpButton" to="/profile">
+                    <Button className="SignUpButton" onClick={this.handleData}>
                         Sign Up
-                    </Link>
+                    </Button>
                     <Link className="LoginLink" to="/">
                         Sign In Instead
                      </Link>        

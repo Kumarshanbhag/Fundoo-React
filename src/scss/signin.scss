@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap");
 
-.mainLogo {
-  position:absolute;
+.signinCard {
+  position: absolute;
   width:30vw;
   min-width: 400px;;
   left:calc( 50% - 15vw);
@@ -66,8 +66,8 @@
   left:-63%; 
 }
 
-@media only screen and (max-width : 1200px) {
-  .mainLogo{
+@media only screen and (max-width : 1258px) {
+  .signinCard{
       margin-left: 5%;
       margin-right: 5%;
       margin-top: 2%;

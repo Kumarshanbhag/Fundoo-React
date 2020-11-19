@@ -10,12 +10,19 @@ import { Card,
     IconButton,
     FormControl,
     InputLabel,
-    OutlinedInput, }
+    OutlinedInput,
+    Snackbar, }
 from "@material-ui/core";
 import "../scss/signin.scss";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { Link } from "react-router-dom";
+import UserServicesAPI from "../Services/UserServices.jsx";
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 class SignIn extends React.Component{
     constructor() {
@@ -24,6 +31,8 @@ class SignIn extends React.Component{
             emailId:null,
             password:null,
             passwordVisibility:true,
+            open: false,
+            message: null,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleVisibility=this.handleVisibility.bind(this);
@@ -42,10 +51,50 @@ class SignIn extends React.Component{
         }
     };
 
+    handleData = async () => {
+        let data = {
+            email:this.state.emailId,
+            password:this.state.password
+        };
+        UserServicesAPI.login(data, (res) => {
+            if (res.status === 200) {
+                console.log("Response", res);
+                this.setState({ message: "Login Done" });
+                this.setState({ open: true });
+                console.log(data);
+                this.props.history.push({
+                    pathname: "/profile",
+                    state: { data },
+                });
+            } else {
+                this.setState({ message: "Login Failed" });
+                this.setState({ open: true });
+            }
+         })
+    };
+
+    handleSnackbarClose = () => {
+        this.setState({ open: false});
+    }
+
     render(){
         return(
-            <Card className="mainLogo" justify="center" boxShadow={3}>
+            <Card className="signinCard " justify="center" boxShadow={3}>
                 <CardContent>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "center",
+                        }}
+                        open={this.state.open}
+                        autoHideDuration={1000}
+                        onClose={this.handleSnackbarClose}
+                    >
+                        <Alert severity="success">
+                            {<span>{this.state.message}</span>} 
+                        </Alert>
+                    </Snackbar>
+                    
                     <FundooLogo />
                     <Typography className="signInLabel" m={1} variant="h5">
                         Sign in
@@ -79,18 +128,15 @@ class SignIn extends React.Component{
                         labelWidth={70} />
                             </FormControl>
                         </Grid>
-
-                        {/* <TextField className="PasswordInput" value={this.state.password} name="password" onChange={this.handleChange}
-                        fullWidth="true" id="standard-basic" color="secondary" label="Password *" variant="outlined"></TextField> */}
                     
                     </Grid>
-                    <Button className="LoginButton">Log In</Button>
+                    <Button className="LoginButton" onClick={this.handleData}>Log In</Button>
                     <Link className="ForgotPasswordLink" to="/forgotpassword">
                         Forgot Password?
                     </Link>
                     <Link className="CreateAccountLink" to="/signup">
                         Create Account
-                    </Link>
+                    </Link>         
                 </CardContent>
             </Card> 
         );

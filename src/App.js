@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import ForgotPassword from './Components/ForgotPassword';
 import SignUp from './Components/SignUp';
+import Profile from './Components/Profile';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
            <Route path='/' component={SignIn} exact={true}></Route>
            <Route path='/forgotpassword' component={ForgotPassword}></Route>
            <Route path='/signup' component={SignUp}></Route>
+           <Route path="/profile" component={Profile}/>
          </Switch>
       </BrowserRouter>
       </div>

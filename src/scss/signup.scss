@@ -12,7 +12,7 @@ $font: 'Montserrat', sans-serif;
 
 .passwordForm{
     width:200% !important;
-    top:11%;
+    top:12% !important;
     left:-110%
 }
 
@@ -50,16 +50,15 @@ $font: 'Montserrat', sans-serif;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color:white;
-   
- background-color:rgb(26,115,232);
-   font-size:.825rem;;
-   padding:10px  25px 10px 25px;
-   border-radius: 4px;
-   &:hover{
-    background-color:rgba(58, 58, 240, 0.698) !important;
-  }
-  
+    background-color:rgb(26,115,232) !important;
+    font-size:.825rem;;
+    padding:10px  25px 10px 25px;
+    border-radius: 4px;
+    &:hover{
+        background-color:rgba(58, 58, 240, 0.698) !important;
+    }
 }
+
 .LoginLink{
     position: relative;
     top:110px;;
