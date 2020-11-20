@@ -66,10 +66,15 @@ class SignIn extends React.Component{
                 console.log("Response", res);
                 this.setState({ message: "Login Done" });
                 this.setState({ open: true });
-                console.log(data);
+                let userData = {
+                    name: res.data.firstName,
+                    lastName: res.data.lastName,
+                    email: res.data.email,
+                };
+                console.log("Response",userData);
                 this.props.history.push({
-                    pathname: "/profile",
-                    state: { data },
+                    pathname: "/dashboard",
+                    state: { userData },
                 });
             } else {
                 this.setState({ message: "Login Failed" });

@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from './Pages/SignIn';
 import ForgotPassword from './Pages/ForgotPassword';
 import SignUp from './Pages/SignUp';
-import Profile from './Pages/Profile';
+import Dashboard from './Pages/Dashboard';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
            <Route path='/' component={SignIn} exact={true}></Route>
            <Route path='/forgotpassword' component={ForgotPassword}></Route>
            <Route path='/signup' component={SignUp}></Route>
-           <Route path="/profile" component={Profile}/>
+           <Route path="/dashboard" component={Dashboard}/>
          </Switch>
       </BrowserRouter>
       </div>
