@@ -3,7 +3,9 @@ import { AppBar,
     InputBase, 
     Typography,
     Toolbar,
-    IconButton } 
+    IconButton,
+    ClickAwayListener
+} 
   from "@material-ui/core";
   
   import { Search,
@@ -11,13 +13,31 @@ import { AppBar,
     Menu } 
   from "@material-ui/icons";
   
-  import '../scss/header.scss';
-  
+import '../scss/header.scss';
+import Sidebar from "../Components/Sidebar"  
 
 class Header extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            toggle:false,
+        };
+        this.handleToggleDrawer = this.handleToggleDrawer.bind(this);
+    }
+
+    handleToggleDrawer = () => {
+        this.setState(prevState => ({ toggle: !prevState.toggle }));
+    }
+
+    handleClickAway = () => {
+        this.setState({ toggle : false});
+    }
+    
     render() {
+        console.log("Toggle",this.state.toggle);
         return (
-            <React.Fragment>
+            <ClickAwayListener onClickAway={this.handleClickAway}>
+            <div>
                 <AppBar position="static" style={{ background: '#b5a43f' }}>
                     <Toolbar>
                         <IconButton
@@ -25,10 +45,12 @@ class Header extends React.Component {
                         className="menuButton"
                         color="inherit"
                         aria-label="open drawer"
+                        onClick={() => this.handleToggleDrawer()}
                         >
                             <Menu />
                         </IconButton>
-    
+                            <Sidebar openDrawer={this.state.toggle} />
+
                         <Typography className="title" variant="h6" noWrap>
                             Fundoo
                         </Typography>
@@ -47,12 +69,13 @@ class Header extends React.Component {
                             aria-haspopup="true"
                             color="inherit"
                             >
-                                <AccountCircle style={{ fontSize: 30 }} />
+                                <AccountCircle style={{ fontSize: 30 }}/>
                             </IconButton>
                         </div>
                     </Toolbar>
                 </AppBar>
-            </React.Fragment>
+            </div>
+            </ClickAwayListener>
         )
     }
 }
