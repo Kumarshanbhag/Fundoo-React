@@ -7,6 +7,7 @@
 
 .inputBase{
     width: 70% !important;
+    margin-left: -8%;
 }
 
 .card{
@@ -14,7 +15,7 @@
     flex-direction: column;
     border-radius: 8px !important;
     box-shadow: 1px 1px 6px #A9A9A9 !important;
-
+    // height: 180px !important;
 }
 
 .takeNote{
@@ -33,4 +34,20 @@
    margin-left: 4%;
    width: 7% !important;
    cursor: pointer; 
+}
+.icons{
+    margin-top: 2%;
+    width: 50%;
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.description {
+    width: 100%;
+    background-color: "transparent";
+    border-color: "transparent";
+    font-size: "110%";
+    opacity: "80%";
 }
