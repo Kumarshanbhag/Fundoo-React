@@ -1,0 +1,36 @@
+.MuiDrawer-paper {
+        top: 10% !important;
+        width: 15% !important;
+    }
+
+.MuiDraawer-paperAnchorDockedRight{
+      border-right: 20;
+    }
+
+.MuiPaper {
+    .root {
+        background-color: 'transparent';
+    }
+}
+
+@media only screen and (max-width:950px){
+    .MuiDrawer-paper {
+      width:17% !important;
+    }
+};
+
+@media only screen and (max-width:800px){
+    .MuiDrawer-paper {
+      width: 23% !important;
+    }
+};
+
+@media only screen and (max-width:650px){
+    .MuiDrawer-paper {
+        width: 9% !important;
+    }
+
+    .MuiTypography-displayBlock{
+        display: none !important;
+    }
+};
