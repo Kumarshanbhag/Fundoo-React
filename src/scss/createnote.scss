@@ -1,0 +1,36 @@
+.mainContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top:2%;
+}
+
+.inputBase{
+    width: 70% !important;
+}
+
+.card{
+    width: 30%;
+    flex-direction: column;
+    border-radius: 8px !important;
+    box-shadow: 1px 1px 6px #A9A9A9 !important;
+
+}
+
+.takeNote{
+    padding: 1% 4% !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.checkBox{
+    margin-left: 0%;
+    width: 7% !important;
+    cursor: pointer;
+}
+
+.imageUpload{
+   margin-left: 4%;
+   width: 7% !important;
+   cursor: pointer; 
+}

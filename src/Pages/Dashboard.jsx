@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CreateNote from '../Components/CreateNote';
 import Header from '../Components/Header'
 
 class Dashboard extends Component {
@@ -12,8 +13,13 @@ class Dashboard extends Component {
 
   render() {
     console.log('Profile',this.state.userData);
+    console.log('Profile Name',this.state.userData.userData.name);
+
     return (
-      <Header />
+      <React.Fragment>
+        <Header />
+        <CreateNote />
+      </React.Fragment>
     )       
   };
 }

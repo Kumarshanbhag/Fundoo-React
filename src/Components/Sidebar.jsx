@@ -19,7 +19,7 @@ const theme = createMuiTheme({
   overrides: {
       MuiDrawer: {
           paper: {
-              top: '10%',
+              top: '9%',
               width: '15%'
           },
           paperAnchorDockedRight:{
