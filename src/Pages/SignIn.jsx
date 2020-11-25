@@ -71,6 +71,8 @@ class SignIn extends React.Component{
                     lastName: res.data.lastName,
                     email: res.data.email,
                 };
+                localStorage.setItem("userId", res.data.userId);
+                localStorage.setItem("id",res.data.id);
                 console.log("Response",userData);
                 this.props.history.push({
                     pathname: "/dashboard",
