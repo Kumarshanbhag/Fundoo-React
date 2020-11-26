@@ -1,0 +1,48 @@
+.cards{
+    width:16%;
+    margin-left: 4%;
+    margin-top: 1%;
+    background-color: transparent;
+    height: 200px;
+}
+
+.displayCards{
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.describe {
+    height:50px;
+}
+
+.cardIcons {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+    cursor: pointer;
+}
+
+.pin{
+    margin-top: auto;
+    margin-left: auto;
+}
+
+@media only screen and (max-width : 1000px){
+    .cards{
+        width:20%;
+    }
+}
+
+@media only screen and (max-width : 800px){
+    .cards{
+        width:27%;
+    }
+}
+
+// @media only screen and (max-width : 800px){
+//     .cards{
+//         width:25%;
+//     }
+// }

@@ -118,7 +118,7 @@ class CreateNote extends Component {
               style={{ marginBottom: "2%" }}
             >
               <CardContent style={{ marginBottom: "-4%" }}>
-                <textarea
+                <InputBase 
                   className="description"
                   placeholder="Description"
                   name="description"

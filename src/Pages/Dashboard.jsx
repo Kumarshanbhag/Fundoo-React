@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CreateNote from '../Components/CreateNote';
 import Header from '../Components/Header'
+import Cards from '../Components/Cards';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Dashboard extends Component {
     return (
       <React.Fragment>
         <Header />
-        <CreateNote />
+        <CreateNote />  
+        <Cards />
       </React.Fragment>
     )       
   };
