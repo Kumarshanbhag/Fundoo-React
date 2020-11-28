@@ -15,7 +15,6 @@ class Dashboard extends Component {
   render() {
     console.log('Profile',this.state.userData);
     console.log('Profile Name',this.state.userData.userData.name);
-
     return (
       <React.Fragment>
         <Header />

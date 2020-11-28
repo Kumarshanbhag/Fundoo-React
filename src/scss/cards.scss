@@ -1,5 +1,5 @@
 .cards{
-    width:16%;
+    width:100%;
     margin-left: 4%;
     margin-top: 1%;
     background-color: transparent;
@@ -29,20 +29,21 @@
     margin-left: auto;
 }
 
-@media only screen and (max-width : 1000px){
-    .cards{
-        width:20%;
+.gridNote {
+    margin-left: 20% !important;
+    width:60% !important;
+    margin-top:1% !important;
+    // margin-right: 50% !important;
+}
+
+@media only screen and (max-width : 1250px){
+    .gridNote{
+        width:70% !important;
     }
 }
 
-@media only screen and (max-width : 800px){
-    .cards{
-        width:27%;
+@media only screen and (max-width : 1070px){
+    .gridNote{
+        width:80% !important;
     }
 }
-
-// @media only screen and (max-width : 800px){
-//     .cards{
-//         width:25%;
-//     }
-// }

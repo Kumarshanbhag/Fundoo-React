@@ -15,6 +15,18 @@ class NoteServices {
             callback(error.response);
         });
     }
+
+    getNotes = (callback) => {
+        return Axios.get(
+            `${Url}notes/getNotesList?access_token=${token}`
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
 }
 
 export default new NoteServices();
