@@ -1,0 +1,17 @@
+.notesTitle{
+    margin-top: 1% !important;
+    margin-left: -50% !important;
+    font-weight: 600 !important;
+}
+
+@media only screen and (max-width : 1100px) {
+    .notesTitle{
+        margin-left: -45% !important;
+    }
+}
+
+@media only screen and (max-width : 1100px) {
+    .notesTitle{
+        margin-left: -40% !important;
+    }
+}

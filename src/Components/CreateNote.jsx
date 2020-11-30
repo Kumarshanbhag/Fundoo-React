@@ -28,7 +28,7 @@ class CreateNote extends Component {
             expanded: "false",
             show: "visible",
             expand: false,
-            pin: true,
+            pin: false,
             title: "",
             description:""
         }
@@ -58,12 +58,15 @@ class CreateNote extends Component {
       if(this.state.title != null || this.state.description !=null) {
         let note={
           title: this.state.title,
-          description: this.state.description
+          description: this.state.description,
+          isPined: this.state.pin
         };
         NoteServicesAPI.save(note,(res) => {
           console.log("api")
           if(res.status === 200) {
             console.log("Note saved");
+            console.log("Pin",note.title)
+            console.log("Pin",note.isPined)
           }
           else {
             console.log("Note Save Failed");
@@ -99,7 +102,7 @@ class CreateNote extends Component {
    
                 { (this.state.expand === true) ?  
                   <IconButton className="iconPin" onClick={this.handlePin} >
-                    { (this.state.pin === true )  ?
+                    { (this.state.pin === false )  ?
                     <img classname="imgPin" src={Pin} alt="Pin icon" />
                     :
                     <img src={Unpin} alt="Pin icon" />

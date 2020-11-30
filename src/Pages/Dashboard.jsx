@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import CreateNote from '../Components/CreateNote';
 import Header from '../Components/Header'
 import Cards from '../Components/Cards';
+import DisplayNotes from '../Components/DisplayNotes'
+import NoteserviceAPI from '../Services/NoteServices.jsx'
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -13,15 +16,16 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('Profile',this.state.userData);
-    console.log('Profile Name',this.state.userData.userData.name);
+    console.log('Profile', this.state.userData);
+    console.log('Profile Name', this.state.userData.userData.name);
     return (
       <React.Fragment>
         <Header />
-        <CreateNote />  
-        <Cards />
+        <CreateNote />
+        <DisplayNotes />
+        {/* <Cards /> */}
       </React.Fragment>
-    )       
+    )
   };
 }
 
