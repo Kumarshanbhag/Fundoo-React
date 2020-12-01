@@ -16,9 +16,17 @@
     height:50px;
 }
 
+.cards:hover .cardIcons {
+    display: flex;
+}
+
+.cards:hover .pin {
+    display: flex;
+}
+
 .cardIcons {
     width:100%;
-    display: flex;
+    display: none;
     justify-content: space-between;
     margin-top: 10%;
     cursor: pointer;
@@ -27,6 +35,7 @@
 .pin{
     margin-top: auto;
     margin-left: auto;
+    display:none;
 }
 
 .gridNote {

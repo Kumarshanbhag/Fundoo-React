@@ -1,0 +1,37 @@
+.colorChoose {
+    margin-top: 2% !important;
+    margin-left: 2% !important;
+    font-size: 250% !important;
+}
+
+.MuiPopover-paper {
+    height: 20% !important;
+    width: 13% !important;
+    background-color: grey !important;
+}
+
+@media only screen and (max-width:1260px) {
+    .MuiPopover-paper {
+        height: 16% !important;
+        width: 17% !important;
+    }
+}
+
+@media only screen and (max-width:1030px) {
+    .MuiPopover-paper {
+        height: 17% !important;
+        width: 20% !important;
+    }
+}
+
+@media only screen and (max-width:870px) {
+    .MuiPopover-paper {
+        width: 23% !important;
+    }
+}
+
+@media only screen and (max-width:770px) {
+    .MuiPopover-paper {
+        width: 29% !important;
+    }
+}

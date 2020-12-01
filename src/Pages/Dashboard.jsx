@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import CreateNote from '../Components/CreateNote';
 import Header from '../Components/Header'
-import Cards from '../Components/Cards';
 import DisplayNotes from '../Components/DisplayNotes'
-import NoteserviceAPI from '../Services/NoteServices.jsx'
-
+// import NoteServiceAPI from '../Services/NoteServices.jsx'
 
 class Dashboard extends Component {
   constructor(props) {
