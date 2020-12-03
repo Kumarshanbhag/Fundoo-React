@@ -17,7 +17,6 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import Add from "@material-ui/icons/AddAlert"
 import PersonAdd from "@material-ui/icons/PersonAdd";
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"
-// import ColorPalette from "@material-ui/icons/ColorLens"
 import ArchieveIcon from "@material-ui/icons/ArchiveOutlined"
 import More from "@material-ui/icons/MoreVertRounded"
 

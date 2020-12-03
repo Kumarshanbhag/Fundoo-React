@@ -27,9 +27,9 @@ class DisplayNotes extends Component {
         return (
             <React.Fragment>
                 <Typography className="notesTitle">PINNED</Typography>
-                <Cards pin={true} allNotes={this.state.allNotes} />
+                <Cards pin={true} allNotes={this.state.allNotes} update={this.componentWillMount} />
                 <Typography className="notesTitle">OTHERS</Typography>
-                <Cards pin={false} allNotes={this.state.allNotes} />
+                <Cards pin={false} allNotes={this.state.allNotes} update={this.componentWillMount} />
             </React.Fragment>
 
         );

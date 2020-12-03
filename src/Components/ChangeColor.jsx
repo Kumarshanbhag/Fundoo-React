@@ -41,8 +41,9 @@ class ChangeColor extends Component {
     ]
 
     setColor = (value) => () => {
-        console.log("Color", value);
+        console.log(" NewColor", value);
         this.props.color(value);
+        this.setState({ open: false })
     }
 
     render() {
@@ -63,7 +64,7 @@ class ChangeColor extends Component {
                     }}
                 >
                     <Grid container>
-                        {this.state.color.map((value, index) => {
+                        {this.state.color.map((value) => {
                             return (
                                 <FiberManualRecordIcon className="colorChoose"
                                     style={{
