@@ -40,6 +40,32 @@ class NoteServices {
             callback(error.response);
         });
     }
+
+    updateNote = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/updateNotes?access_token=${token}`,
+            data
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
+
+    pinUnpinNotes = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/pinUnpinNotes?access_token=${token}`,
+            data
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
 }
 
 export default new NoteServices();

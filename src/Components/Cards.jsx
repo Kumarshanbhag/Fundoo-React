@@ -10,7 +10,9 @@ import {
     InputBase,
     Grid,
     Dialog,
-    DialogContent
+    DialogContent,
+    Button,
+    DialogActions
 } from '@material-ui/core'
 
 import Add from "@material-ui/icons/AddAlert"
@@ -24,7 +26,7 @@ class Cards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pin: this.props.pin,
+            pin: true,
             noteId: "",
             title: "",
             description: "",
@@ -42,7 +44,26 @@ class Cards extends Component {
     }
 
     handlePin = () => {
-        this.setState(prevState => ({ pin: !prevState.pin }));
+        if (this.state.pin === false) {
+            let data = {
+                noteIdList: [this.state.noteId],
+                isPined: true,
+            }
+            NoteServicesAPI.pinUnpinNotes(data, (res) => {
+                console.log(res.message);
+                this.props.update()
+            })
+        }
+        else {
+            let data = {
+                noteIdList: [this.state.noteId],
+                isPined: false,
+            }
+            NoteServicesAPI.pinUnpinNotes(data, (res) => {
+                console.log(res.message);
+                this.props.update()
+            })
+        }
     }
 
     changeColor = (value) => {
@@ -59,6 +80,19 @@ class Cards extends Component {
         })
     }
 
+    handleUpdate = () => {
+        this.setState({ dialogOpen: false })
+        let data = {
+            noteId: this.state.noteId,
+            title: this.state.title,
+            description: this.state.description,
+        }
+        NoteServicesAPI.updateNote(data, (res) => {
+            console.log("Response", res.message);
+            this.props.update()
+        })
+    }
+
     setCardDetails = (id, title, description, pined, colored) => {
         this.setState({
             noteId: id,
@@ -69,9 +103,17 @@ class Cards extends Component {
         })
     }
 
+    handleTitle = async (e) => {
+        this.setState({ title: await e.target.value })
+    }
+
+    handleDescription = async (e) => {
+        this.setState({ description: await e.target.value })
+    }
+
     render() {
         // console.log("Notes", this.props.allNotes);
-        // console.log("Pin", this.state.pin);
+        console.log("Pin", this.state.pin);
         // console.log("Note", this.state.noteId);
         // console.log("Color", this.state.color);
         console.log("Dialog", this.state.dialogOpen)
@@ -103,7 +145,7 @@ class Cards extends Component {
                                             <PersonAdd />
 
                                             <ChangeColor color={this.changeColor} />
-                                            
+
                                             <InsertPhotoIcon />
                                             <ArchieveIcon />
                                             <More />
@@ -115,7 +157,41 @@ class Cards extends Component {
                     }
                 })}
 
-                
+                <Dialog onClose={this.handleDialogClose} aria-labelledby="customized-dialog-title" open={this.state.dialogOpen}>
+                    <Card style={{ backgroundColor: this.state.color }}>
+                        <DialogContent>
+                            <InputBase
+                                name="description"
+                                onChange={this.handleTitle}
+                                value={this.state.title}
+                            />
+                        </DialogContent>
+                        <DialogContent>
+                            <InputBase
+                                name="description"
+                                onChange={this.handleDescription}
+                                value={this.state.description}
+                            />
+
+                        </DialogContent>
+                        <DialogActions>
+                            <div className="dialogIcons">
+                                <Add />
+                                <PersonAdd />
+
+                                <ChangeColor color={this.changeColor} />
+
+                                <InsertPhotoIcon />
+                                <ArchieveIcon />
+                                <More />
+                            </div>
+                            <Button autofocus onClick={this.handleUpdate} color="primary">
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </Card>
+                </Dialog>
+
 
             </Grid >
 

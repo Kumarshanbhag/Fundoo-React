@@ -44,6 +44,15 @@
     margin-top:1% !important;
 }
 
+.dialogIcons {
+    width:50%;
+    display: flex;
+    justify-content: space-between;
+    margin:auto;
+    margin-left: 3% ;
+    cursor: pointer;
+}
+
 .MuiDialog-paperWidthSm{
     width:100%;
 }
