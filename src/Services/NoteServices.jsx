@@ -67,9 +67,22 @@ class NoteServices {
         });
     }
 
-    trashNotes = (data,callback) => {
+    deleteNotes = (data,callback) => {
         return Axios.post(
             `${Url}notes/trashNotes?access_token=${token}`,
+            data
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
+
+    deleteForever = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/deleteForeverNotes?access_token=${token}`,
             data
         )
         .then((response) => {

@@ -17,7 +17,6 @@ import {
     DialogActions,
     Menu,
     MenuItem,
-    IconButton
 } from '@material-ui/core'
 
 import Add from "@material-ui/icons/AddAlert"
@@ -134,18 +133,26 @@ class Cards extends Component {
     }
 
     handleDelete = () => {
-        this.setState({
-            menu: false,
-            anchorEl: null
-        })
         let data={
-            isDeleted : true,
+            isDeleted : !this.props.deleted,
             noteIdList : [this.state.noteId],
         };
-        NoteServicesAPI.trashNotes(data,(res) => {
+        NoteServicesAPI.deleteNotes(data,(res) => {
             console.log(res.message);
             this.props.update()
         })
+        this.handleMenuClose();
+    }
+
+    handleDeleteForever = () => {
+        let data={
+            noteIdList : [this.state.noteId],
+        };
+        NoteServicesAPI.deleteForever(data,(res) => {
+            console.log(res.message);
+            this.props.update()
+        })
+        this.handleMenuClose();
     }
 
     render() {
@@ -246,8 +253,8 @@ class Cards extends Component {
                         </React.Fragment>
                         :
                         <React.Fragment>
-                            <MenuItem onClick={this.handleMenuClose} >Delete Forever</MenuItem>
-                            <MenuItem onClick={this.handleMenuClose}>Restore</MenuItem>
+                            <MenuItem onClick={this.handleDeleteForever} >Delete Forever</MenuItem>
+                            <MenuItem onClick={this.handleDelete}>Restore</MenuItem>
                         </React.Fragment>
                     }
                 </Menu>
