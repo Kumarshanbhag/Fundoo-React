@@ -66,6 +66,19 @@ class NoteServices {
             callback(error.response);
         });
     }
+
+    trashNotes = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/trashNotes?access_token=${token}`,
+            data
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
 }
 
 export default new NoteServices();

@@ -36,6 +36,7 @@
     margin-top: auto;
     margin-left: auto;
     display:none;
+    cursor: pointer;
 }
 
 .gridNote {
@@ -55,6 +56,11 @@
 
 .MuiDialog-paperWidthSm{
     width:100%;
+}
+
+.MuiMenu-paper{
+    background-color: white !important;
+    height:90px !important;
 }
 
 @media only screen and (max-width : 1250px){

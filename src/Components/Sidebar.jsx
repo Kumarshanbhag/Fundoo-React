@@ -14,53 +14,58 @@ import NoteIcon from '@material-ui/icons/EmojiObjects';
 import EditIcon from '@material-ui/icons/EditOutlined';
 
 import '../scss/sidebar.scss';
+import { Link } from 'react-router-dom';
 
 class Sidebar extends Component {
-  constructor(props){
+  constructor(props) {
     super();
   }
   render() {
     return (
-        <Drawer variant='persistent' open={this.props.openDrawer} >
-          <List>
-            <ListItem className="note">
-              <ListItemIcon>
-                  <NoteIcon/>
-              </ListItemIcon>
-              <ListItemText>Note</ListItemText>
-            </ListItem>
+      <Drawer variant='persistent' open={this.props.openDrawer} >
+        <List>
+        <Link to="/dashboard">
+          <ListItem className="note" >
+            <ListItemIcon>
+              <NoteIcon />
+            </ListItemIcon>
+            <ListItemText>Note</ListItemText>
+          </ListItem>
+          </Link>
 
-            <ListItem className="note">
-              <ListItemIcon>
-                <ReminderIcon/>
-              </ListItemIcon>
-              <ListItemText>Reminder</ListItemText>
-            </ListItem>
-            
-            <Divider/>
-            <ListItem className="note">
-              <ListItemIcon>
-                <EditIcon />
-              </ListItemIcon>
-              <ListItemText>Edit Label</ListItemText>
-            </ListItem>
-            <Divider />
+          <ListItem className="note">
+            <ListItemIcon>
+              <ReminderIcon />
+            </ListItemIcon>
+            <ListItemText>Reminder</ListItemText>
+          </ListItem>
 
-            <ListItem className="note">
+          <Divider />
+          <ListItem className="note">
+            <ListItemIcon>
+              <EditIcon />
+            </ListItemIcon>
+            <ListItemText>Edit Label</ListItemText>
+          </ListItem>
+          <Divider />
+
+          <ListItem className="note">
+            <ListItemIcon>
+              <ArchiveIcon />
+            </ListItemIcon>
+            <ListItemText>Archive</ListItemText>
+          </ListItem>
+
+          <Link to="/trash">
+          <ListItem className="note">
               <ListItemIcon>
-                <ArchiveIcon/>
-              </ListItemIcon>
-              <ListItemText>Archive</ListItemText>
-            </ListItem>
-            
-            <ListItem className="note">
-              <ListItemIcon>
-                <TrashIcon/>
+                <TrashIcon />
               </ListItemIcon>
               <ListItemText>Trash</ListItemText>
-            </ListItem>
-          </List>
-        </Drawer>
+          </ListItem>
+          </Link>
+        </List >
+      </Drawer >
     )
   }
 }

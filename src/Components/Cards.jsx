@@ -4,6 +4,8 @@ import Pin from '../Images/Pin.svg'
 import Unpin from '../Images/Unpin.svg'
 import ChangeColor from '../Components/ChangeColor.jsx'
 
+// import More from '../Components/More.jsx'
+
 import {
     Card,
     CardContent,
@@ -12,7 +14,10 @@ import {
     Dialog,
     DialogContent,
     Button,
-    DialogActions
+    DialogActions,
+    Menu,
+    MenuItem,
+    IconButton
 } from '@material-ui/core'
 
 import Add from "@material-ui/icons/AddAlert"
@@ -26,13 +31,30 @@ class Cards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pin: true,
+            pin: null,
             noteId: "",
             title: "",
             description: "",
             color: "",
             dialogOpen: false,
+            menu: false,
+            anchorEl: null
         }
+    }
+
+    handleMenu = (event) => {
+        console.log("Menu Clicked")
+        this.setState({
+            menu: true,
+            anchorEl: event.currentTarget
+        })
+    }
+
+    handleMenuClose = () => {
+        this.setState({
+            menu: false,
+            anchorEl: null
+        })
     }
 
     handleDialog = () => {
@@ -111,16 +133,33 @@ class Cards extends Component {
         this.setState({ description: await e.target.value })
     }
 
+    handleDelete = () => {
+        this.setState({
+            menu: false,
+            anchorEl: null
+        })
+        let data={
+            isDeleted : true,
+            noteIdList : [this.state.noteId],
+        };
+        NoteServicesAPI.trashNotes(data,(res) => {
+            console.log(res.message);
+            this.props.update()
+        })
+    }
+
     render() {
         // console.log("Notes", this.props.allNotes);
         console.log("Pin", this.state.pin);
         // console.log("Note", this.state.noteId);
         // console.log("Color", this.state.color);
         console.log("Dialog", this.state.dialogOpen)
+        console.log("Menu", this.state.menu, this.state.anchorEl)
         return (
             <Grid className="gridNote" container spacing={3} direction="row" justify="flex-start" >
                 {this.props.allNotes.map((value, index) => {
-                    if (value.isPined === this.props.pin) {
+                    if ((value.isPined === this.props.pin || this.props.pin === undefined) &&
+                        value.isDeleted === this.props.deleted) {
                         return (
                             <Grid item xl={3} onClick={() => this.setCardDetails(
                                 value.id, value.title, value.description, value.isPined, value.color
@@ -129,9 +168,9 @@ class Cards extends Component {
                                     <CardContent className="displayCards">
                                         <div className="pin" onClick={this.handlePin}>
                                             {(value.isPined === false) ?
-                                                <img src={Pin} alt="Pin icon" />
+                                                <img src={Pin} alt="Pin icon" onClick={this.handlePin} />
                                                 :
-                                                <img src={Unpin} alt="Pin icon" />
+                                                <img src={Unpin} alt="Pin icon" onClick={this.handlePin} />
                                             }
                                         </div>
 
@@ -148,7 +187,7 @@ class Cards extends Component {
 
                                             <InsertPhotoIcon />
                                             <ArchieveIcon />
-                                            <More />
+                                            <More onClick={this.handleMenu} />
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -189,9 +228,29 @@ class Cards extends Component {
                                 Close
                             </Button>
                         </DialogActions>
+
                     </Card>
                 </Dialog>
 
+                <Menu
+                    className="menu"
+                    anchorEl={this.state.anchorEl}
+                    keepMounted
+                    open={this.state.menu}
+                    onClose={this.handleMenuClose}
+                >
+                    {(this.props.deleted === false) ?
+                        <React.Fragment>
+                            <MenuItem onClick={this.handleMenuClose}>Add labels</MenuItem>
+                            <MenuItem onClick={this.handleDelete} >Delete note</MenuItem>
+                        </React.Fragment>
+                        :
+                        <React.Fragment>
+                            <MenuItem onClick={this.handleMenuClose} >Delete Forever</MenuItem>
+                            <MenuItem onClick={this.handleMenuClose}>Restore</MenuItem>
+                        </React.Fragment>
+                    }
+                </Menu>
 
             </Grid >
 
