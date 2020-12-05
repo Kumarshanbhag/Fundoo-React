@@ -6,6 +6,8 @@ import ForgotPassword from './Pages/ForgotPassword';
 import SignUp from './Pages/SignUp';
 import Dashboard from './Pages/Dashboard';
 import DisplayTrash from './Components/DisplayTrash';
+import DisplayArchive from './Components/DisplayArchive';
+
 
 class App extends Component {
   render() {
@@ -18,6 +20,7 @@ class App extends Component {
            <Route path='/signup' component={SignUp}></Route>
            <Route path="/dashboard" component={Dashboard}/>
            <Route path="/trash" component={DisplayTrash} />
+           <Route path="/archive" component={DisplayArchive} />
          </Switch>
       </BrowserRouter>
       </div>

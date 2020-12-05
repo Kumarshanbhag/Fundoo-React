@@ -92,6 +92,30 @@ class NoteServices {
             callback(error.response);
         });
     }
+
+    getTrashNotes = (callback) => {
+        return Axios.get(
+            `${Url}notes/getTrashNotesList?access_token=${token}`
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
+
+    getArchiveNotes = (callback) => {
+        return Axios.get(
+            `${Url}notes/getArchiveNotesList?access_token=${token}`
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
 }
 
 export default new NoteServices();

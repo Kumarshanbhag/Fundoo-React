@@ -49,12 +49,14 @@ class Sidebar extends Component {
           </ListItem>
           <Divider />
 
+          <Link to="/archive">
           <ListItem className="note">
             <ListItemIcon>
               <ArchiveIcon />
             </ListItemIcon>
             <ListItemText>Archive</ListItemText>
           </ListItem>
+          </Link>
 
           <Link to="/trash">
           <ListItem className="note">

@@ -166,7 +166,8 @@ class Cards extends Component {
             <Grid className="gridNote" container spacing={3} direction="row" justify="flex-start" >
                 {this.props.allNotes.map((value, index) => {
                     if ((value.isPined === this.props.pin || this.props.pin === undefined) &&
-                        value.isDeleted === this.props.deleted) {
+                        value.isDeleted === this.props.deleted &&
+                        value.isArchived=== this.props.archive) {
                         return (
                             <Grid item xl={3} onClick={() => this.setCardDetails(
                                 value.id, value.title, value.description, value.isPined, value.color
