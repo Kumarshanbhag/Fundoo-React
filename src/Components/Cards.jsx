@@ -17,14 +17,17 @@ import {
     DialogActions,
     Menu,
     MenuItem,
+    Tooltip,
 } from '@material-ui/core'
 
 import Add from "@material-ui/icons/AddAlert"
 import PersonAdd from "@material-ui/icons/PersonAdd";
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"
 import ArchieveIcon from "@material-ui/icons/ArchiveOutlined"
+import UnarchiveIcon from "@material-ui/icons/UnarchiveOutlined"
 import More from "@material-ui/icons/MoreVertRounded"
 import NoteServicesAPI from '../Services/NoteServices'
+import NoteServices from '../Services/NoteServices'
 
 class Cards extends Component {
     constructor(props) {
@@ -133,11 +136,11 @@ class Cards extends Component {
     }
 
     handleDelete = () => {
-        let data={
-            isDeleted : !this.props.deleted,
-            noteIdList : [this.state.noteId],
+        let data = {
+            isDeleted: !this.props.deleted,
+            noteIdList: [this.state.noteId],
         };
-        NoteServicesAPI.deleteNotes(data,(res) => {
+        NoteServicesAPI.deleteNotes(data, (res) => {
             console.log(res.message);
             this.props.update()
         })
@@ -145,14 +148,26 @@ class Cards extends Component {
     }
 
     handleDeleteForever = () => {
-        let data={
-            noteIdList : [this.state.noteId],
+        let data = {
+            noteIdList: [this.state.noteId],
         };
-        NoteServicesAPI.deleteForever(data,(res) => {
+        NoteServicesAPI.deleteForever(data, (res) => {
             console.log(res.message);
             this.props.update()
         })
         this.handleMenuClose();
+    }
+
+    handleArchive = () => {
+        let data = {
+            isArchived: !this.props.archive,
+            noteIdList: [this.state.noteId],
+        }
+        NoteServices.archiveNotes(data, (res) => {
+            console.log(res.archive);
+            this.props.update()
+        })
+
     }
 
     render() {
@@ -167,7 +182,7 @@ class Cards extends Component {
                 {this.props.allNotes.map((value, index) => {
                     if ((value.isPined === this.props.pin || this.props.pin === undefined) &&
                         value.isDeleted === this.props.deleted &&
-                        value.isArchived=== this.props.archive) {
+                        value.isArchived === this.props.archive) {
                         return (
                             <Grid item xl={3} onClick={() => this.setCardDetails(
                                 value.id, value.title, value.description, value.isPined, value.color
@@ -186,17 +201,30 @@ class Cards extends Component {
                                         <InputBase value={value.title} onClick={this.handleDialog} />
                                         <InputBase value={value.description} onClick={this.handleDialog} />
 
+                                        {(this.props.deleted === false) ?
+                                            <div className="cardIcons">
+                                                <Add />
+                                                <PersonAdd />
 
-                                        <div className="cardIcons">
-                                            <Add />
-                                            <PersonAdd />
+                                                <ChangeColor color={this.changeColor} />
 
-                                            <ChangeColor color={this.changeColor} />
-
-                                            <InsertPhotoIcon />
-                                            <ArchieveIcon />
-                                            <More onClick={this.handleMenu} />
-                                        </div>
+                                                <InsertPhotoIcon />
+                                                {(this.props.archive) ?
+                                                    <Tooltip title="Archive" >
+                                                        <UnarchiveIcon onClick={this.handleArchive} />
+                                                    </Tooltip>
+                                                    :
+                                                    <Tooltip title="Archive" >
+                                                        <ArchieveIcon onClick={this.handleArchive} />
+                                                    </Tooltip>
+                                                }
+                                                <More onClick={this.handleMenu} />
+                                            </div>
+                                            :
+                                            <div className="cardIcons">
+                                                <More onClick={this.handleMenu} />
+                                            </div>
+                                        }
                                     </CardContent>
                                 </Card>
                             </Grid>

@@ -116,6 +116,19 @@ class NoteServices {
             callback(error.response);
         });
     }
+
+    archiveNotes = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/archiveNotes?access_token=${token}`,
+            data
+        )
+        .then((response) => {
+           callback(response);
+        })
+        .catch((error) => {
+            callback(error.response);
+        });
+    }
 }
 
 export default new NoteServices();

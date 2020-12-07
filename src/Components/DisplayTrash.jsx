@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import DeleteAndArchive from './DeleteAndArchive'
 import Cards from './Cards.jsx';
 import NoteserviceAPI from '../Services/NoteServices.jsx'
 import Header from './Header';

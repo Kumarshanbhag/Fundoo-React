@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import '../scss/changecolor.scss'
 import {
     Popover,
-    Grid
+    Grid,
+    Tooltip
 } from '@material-ui/core';
 
 import ColorLensIcon from '@material-ui/icons/ColorLens';
@@ -49,7 +50,10 @@ class ChangeColor extends Component {
     render() {
         return (
             <div>
-                <ColorLensIcon onClick={this.handleClick} />
+                <Tooltip title="Color">
+                    <ColorLensIcon onClick={this.handleClick} />
+                </Tooltip>
+
                 <Popover
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}
