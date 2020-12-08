@@ -3,6 +3,7 @@ import '../scss/cards.scss'
 import Pin from '../Images/Pin.svg'
 import Unpin from '../Images/Unpin.svg'
 import ChangeColor from '../Components/ChangeColor.jsx'
+import Reminder from '../Components/Reminder.jsx'
 
 // import More from '../Components/More.jsx'
 
@@ -20,7 +21,6 @@ import {
     Tooltip,
 } from '@material-ui/core'
 
-import Add from "@material-ui/icons/AddAlert"
 import PersonAdd from "@material-ui/icons/PersonAdd";
 import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"
 import ArchieveIcon from "@material-ui/icons/ArchiveOutlined"
@@ -167,7 +167,18 @@ class Cards extends Component {
             console.log(res.archive);
             this.props.update()
         })
+    }
 
+    handleRemind = (value) => {
+        let data = {
+            "reminder": [value],
+            "noteIdList": [this.state.noteId]
+        }
+        console.log("HandleRemind",data);
+        NoteServicesAPI.remindNotes(data,(res) => {
+            console.log(res.message);
+            this.props.update()
+        })
     }
 
     render() {
@@ -203,7 +214,7 @@ class Cards extends Component {
 
                                         {(this.props.deleted === false) ?
                                             <div className="cardIcons">
-                                                <Add />
+                                                <Reminder remind={this.handleRemind} />
                                                 <PersonAdd />
 
                                                 <ChangeColor color={this.changeColor} />
@@ -251,7 +262,7 @@ class Cards extends Component {
                         </DialogContent>
                         <DialogActions>
                             <div className="dialogIcons">
-                                <Add />
+                                <Reminder />
                                 <PersonAdd />
 
                                 <ChangeColor color={this.changeColor} />
