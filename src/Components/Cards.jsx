@@ -19,6 +19,7 @@ import {
     Menu,
     MenuItem,
     Tooltip,
+    Chip
 } from '@material-ui/core'
 
 import PersonAdd from "@material-ui/icons/PersonAdd";
@@ -26,8 +27,8 @@ import InsertPhotoIcon from "@material-ui/icons/InsertPhoto"
 import ArchieveIcon from "@material-ui/icons/ArchiveOutlined"
 import UnarchiveIcon from "@material-ui/icons/UnarchiveOutlined"
 import More from "@material-ui/icons/MoreVertRounded"
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import NoteServicesAPI from '../Services/NoteServices'
-import NoteServices from '../Services/NoteServices'
 
 class Cards extends Component {
     constructor(props) {
@@ -163,7 +164,7 @@ class Cards extends Component {
             isArchived: !this.props.archive,
             noteIdList: [this.state.noteId],
         }
-        NoteServices.archiveNotes(data, (res) => {
+        NoteServicesAPI.archiveNotes(data, (res) => {
             console.log(res.archive);
             this.props.update()
         })
@@ -174,8 +175,18 @@ class Cards extends Component {
             "reminder": [value],
             "noteIdList": [this.state.noteId]
         }
-        console.log("HandleRemind",data);
-        NoteServicesAPI.remindNotes(data,(res) => {
+        console.log("HandleRemind", data);
+        NoteServicesAPI.remindNotes(data, (res) => {
+            console.log(res.message);
+            this.props.update()
+        })
+    }
+
+    handleReminderDelete = () => {
+        let data = {
+            "noteIdList": [this.state.noteId]
+        }
+        NoteServicesAPI.removeReminder(data,(res) => {
             console.log(res.message);
             this.props.update()
         })
@@ -211,7 +222,17 @@ class Cards extends Component {
 
                                         <InputBase value={value.title} onClick={this.handleDialog} />
                                         <InputBase value={value.description} onClick={this.handleDialog} />
+                                        {(value.reminder.length !== 0) ?
+                                            <Chip
+                                                icon={<AccessTimeIcon />}
+                                                label={value.reminder[0].substring(0, 21)}
+                                                onDelete={this.handleReminderDelete}
+                                            />
 
+                                            :
+                                            ""
+
+                                        }
                                         {(this.props.deleted === false) ?
                                             <div className="cardIcons">
                                                 <Reminder remind={this.handleRemind} />

@@ -142,6 +142,19 @@ class NoteServices {
                 callback(error.response);
             });
     }
+
+    removeReminder = (data,callback) => {
+        return Axios.post(
+            `${Url}notes/removeReminderNotes?access_token=${token}`,
+            data
+        )
+            .then((response) => {
+                callback(response);
+            })
+            .catch((error) => {
+                callback(error.response);
+            });
+    }
 }
 
 export default new NoteServices();

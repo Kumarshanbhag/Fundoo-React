@@ -41,15 +41,15 @@ class Reminder extends Component {
     handleDate = (value) => () => {
         var day;
         if (value === "today") {
-            day = moment(this.state.todayDate).format("yyyy-MM-DD") + "T14:30:00.000Z"
+            day = moment(this.state.todayDate).format("yyyy-MM-DD") + "T20:00:00.000Z"
             console.log("Remind", value, day);
         }
         else if(value==="tomorrow"){
-            day = moment(this.state.todayDate).add(1,"day").format("yyyy-MM-DD") + "T02:30:00.000Z"
+            day = moment(this.state.todayDate).add(1,"day").format("yyyy-MM-DD") + "T08:00:00.000Z"
             console.log("Remind", value, day);
         }
         else if(value==="next"){
-            day= moment(this.state.todayDate).add(7,"day").format("yyyy-MM-DD") + "T02:30:00.000Z"
+            day= moment(this.state.todayDate).add(7,"day").format("yyyy-MM-DD") + "T08:00:00.000Z"
             console.log("Remind", value, day);
         }
         this.props.remind(day);
