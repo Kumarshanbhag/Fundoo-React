@@ -155,6 +155,18 @@ class NoteServices {
                 callback(error.response);
             });
     }
+
+    getReminderNotes = (callback) => {
+        return Axios.get(
+            `${Url}notes/getReminderNotesList?access_token=${token}`
+        )
+            .then((response) => {
+                callback(response);
+            })
+            .catch((error) => {
+                callback(error.response);
+            });
+    }
 }
 
 export default new NoteServices();

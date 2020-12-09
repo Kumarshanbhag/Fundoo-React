@@ -33,12 +33,14 @@ class Sidebar extends Component {
           </ListItem>
           </Link>
 
+          <Link to="/reminder">
           <ListItem className="note">
             <ListItemIcon>
               <ReminderIcon />
             </ListItemIcon>
             <ListItemText>Reminder</ListItemText>
           </ListItem>
+          </Link>
 
           <Divider />
           <ListItem className="note">

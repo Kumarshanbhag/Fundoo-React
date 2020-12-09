@@ -7,6 +7,7 @@ import SignUp from './Pages/SignUp';
 import Dashboard from './Pages/Dashboard';
 import DisplayTrash from './Components/DisplayTrash';
 import DisplayArchive from './Components/DisplayArchive';
+import DisplayReminder from './Components/DisplayReminder';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
            <Route path="/dashboard" component={Dashboard}/>
            <Route path="/trash" component={DisplayTrash} />
            <Route path="/archive" component={DisplayArchive} />
+           <Route path="/reminder" component={DisplayReminder} />
          </Switch>
       </BrowserRouter>
       </div>
