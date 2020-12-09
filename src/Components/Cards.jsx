@@ -308,15 +308,15 @@ class Cards extends Component {
                     onClose={this.handleMenuClose}
                 >
                     {(this.props.deleted === false) ?
-                        <React.Fragment>
+                        <div>
                             <MenuItem onClick={this.handleMenuClose}>Add labels</MenuItem>
                             <MenuItem onClick={this.handleDelete} >Delete note</MenuItem>
-                        </React.Fragment>
+                        </div>
                         :
-                        <React.Fragment>
+                        <div>
                             <MenuItem onClick={this.handleDeleteForever} >Delete Forever</MenuItem>
                             <MenuItem onClick={this.handleDelete}>Restore</MenuItem>
-                        </React.Fragment>
+                        </div>
                     }
                 </Menu>
 
